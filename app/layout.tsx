@@ -3,28 +3,31 @@ import { Inter as FontSans } from "next/font/google"
 
 import { cn } from "@/lib/utils"
 import { Metadata } from "next"
+import { ClerkProvider } from "@clerk/nextjs"
 
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
 })
-export const Metadate : Metadata = {
-  title : "Livedocs",
-  description : "Your go-to collaborative editor"
+export const Metadate: Metadata = {
+  title: "Livedocs",
+  description: "Your go-to collaborative editor"
 }
 
-export default function RootLayout({ children }: {children : React.ReactNode}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head />
-      <body
-        className={cn(
-          "min-h-screen font-sans antialiased",
-          fontSans.variable
-        )}
-      >
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <head />
+        <body
+          className={cn(
+            "min-h-screen font-sans antialiased",
+            fontSans.variable
+          )}
+        >
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   )
 }
