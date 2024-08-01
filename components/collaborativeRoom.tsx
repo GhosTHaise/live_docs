@@ -5,11 +5,19 @@ import { Editor } from '@/components/editor/Editor';
 import Header from '@/components/header';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
 import ActiveCollaborators from './activeCollaborators';
+import { useRef, useState } from 'react';
 
 const CollaborativeRoom = ({
     roomId,
     roomMetadata
 }: CollaborativeRoomProps) => {
+    const [editing, setEditing] = useState(false);
+    const [Loading, setLoading] = useState(false);
+    const [documentTitle, setDocumentTitle] = useState(roomMetadata.title);
+
+    const containerRef = useRef<HTMLDivElement>(null);
+    const inputRef = useRef<HTMLDivElement>(null);
+
     return (
         <RoomProvider id={roomId}>
             <ClientSideSuspense fallback={<div>Loading...</div>}>
