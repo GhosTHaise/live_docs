@@ -7,11 +7,14 @@ import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
 import ActiveCollaborators from './activeCollaborators';
 import { useRef, useState } from 'react';
 import { Input } from './ui/input';
+import Image from 'next/image';
 
 const CollaborativeRoom = ({
     roomId,
     roomMetadata
 }: CollaborativeRoomProps) => {
+
+    const currentUserType = "editor";
     const [editing, setEditing] = useState(false);
     const [loading, setLoading] = useState(false);
     const [documentTitle, setDocumentTitle] = useState(roomMetadata.title);
@@ -51,6 +54,35 @@ const CollaborativeRoom = ({
                                             }
                                         </p>
                                     </>
+                                )
+                            }
+
+                            {
+                                currentUserType === "editor" && !editing && (
+                                    <Image
+                                        src="/assets/icons/edit.svg"
+                                        alt='edit'
+                                        width={24}
+                                        height={24}
+                                        onClick={() => setEditing(true)}
+                                        className='pointer'
+                                    />
+                                )
+                            }
+
+                            {
+                                currentUserType !== "editor" && !editing && (
+                                    <p className='view-only-tag'>
+                                        View only
+                                    </p>
+                                )
+                            }
+
+                            {
+                                loading && (
+                                    <p className='text-sm text-gray-400'>
+                                        Saving ...
+                                    </p>
                                 )
                             }
                         </div>
