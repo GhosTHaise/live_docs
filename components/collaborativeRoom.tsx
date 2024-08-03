@@ -22,8 +22,20 @@ const CollaborativeRoom = ({
     const containerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const updateTitleHandle = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const updateTitleHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            setLoading(true);
 
+            try {
+                if (documentTitle !== roomMetadata.title) {
+
+                }
+            } catch (error) {
+                console.error(error);
+            }
+
+            setLoading(false);
+        }
     }
 
     useEffect(() => {
@@ -57,7 +69,7 @@ const CollaborativeRoom = ({
                                         ref={inputRef}
                                         placeholder='Enter title'
                                         onChange={(e) => setDocumentTitle(e.target.value)}
-                                        onKeyDown={updateTitleHandle}
+                                        onKeyDown={updateTitleHandler}
                                         disabled={!editing}
                                         className='document-title-input'
                                     />
