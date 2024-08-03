@@ -8,6 +8,7 @@ import ActiveCollaborators from './activeCollaborators';
 import { useEffect, useRef, useState } from 'react';
 import { Input } from './ui/input';
 import Image from 'next/image';
+import { updateDocumentTitle } from '@/lib/actions/room.action';
 
 const CollaborativeRoom = ({
     roomId,
@@ -22,13 +23,13 @@ const CollaborativeRoom = ({
     const containerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const updateTitleHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const updateTitleHandler = async (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
             setLoading(true);
 
             try {
                 if (documentTitle !== roomMetadata.title) {
-
+                    const updatedDocument = await updateDocumentTitle(roomId, documentTitle)
                 }
             } catch (error) {
                 console.error(error);
@@ -37,6 +38,12 @@ const CollaborativeRoom = ({
             setLoading(false);
         }
     }
+
+    useEffect(() => {
+        if (editing && inputRef.current) {
+            inputRef.current.focus()
+        }
+    }, [editing])
 
     useEffect(() => {
         const handleClickOutside = (e: MouseEvent) => {
