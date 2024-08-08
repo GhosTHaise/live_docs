@@ -1,1 +1,2 @@
 npm run lint run lint
+npm run lint run lint-staged
