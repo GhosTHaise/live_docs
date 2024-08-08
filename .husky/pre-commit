@@ -1,2 +1,3 @@
 npm test
-npm run lint
+
+echo "npm run lint" >> ./.husky/pre-commitnpm run lint-staged
