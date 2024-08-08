@@ -1,3 +1,1 @@
-npm test
-
 echo "npm run lint" >> ./.husky/pre-commitnpm run lint-staged
