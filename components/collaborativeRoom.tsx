@@ -49,6 +49,7 @@ const CollaborativeRoom = ({
         const handleClickOutside = (e: MouseEvent) => {
             if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
                 setEditing(false)
+                updateDocumentTitle(roomId, documentTitle)
             }
         }
 
@@ -57,7 +58,7 @@ const CollaborativeRoom = ({
         return () => {
             document.removeEventListener("mousedown", handleClickOutside)
         }
-    }, [])
+    }, [roomId, documentTitle])
 
 
     return (
