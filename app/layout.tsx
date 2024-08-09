@@ -11,7 +11,7 @@ const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
 })
-export const Metadate: Metadata = {
+export const metadata: Metadata = {
   title: "Livedocs",
   description: "Your go-to collaborative editor"
 }
