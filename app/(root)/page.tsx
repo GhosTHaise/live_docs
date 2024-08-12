@@ -1,9 +1,11 @@
 import AddDocumentBtn from '@/components/addDocumentBtn';
 import Header from '@/components/header'
 import { getDocuments } from '@/lib/actions/room.action';
+import { dateConverter } from '@/lib/utils';
 import { SignedIn, UserButton } from '@clerk/nextjs'
 import { currentUser } from '@clerk/nextjs/server'
 import Image from 'next/image';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react'
 
@@ -30,7 +32,32 @@ const Home = async () => {
               <h3 className='text-28-semibold'>
                 All Documents
               </h3>
+              <AddDocumentBtn
+                userId={clerkUser.id}
+                email={clerkUser!.emailAddresses[0].emailAddress}
+              />
             </div>
+            <ul className='document-ul'>
+              {roomDocuments.data.map(({ id, metadata, createdAt }: any) => (
+                <li className='document-list-item' key={id}>
+                  <Link href={`/document/${id}`} className='flex flex-1 items-center gap-4'>
+                    <div className='hidden rounded-md bg-dark-500 p-2 sm:block'>
+                      <Image
+                        alt='file'
+                        src={"/assets/icons/doc.svg"}
+                        width={40}
+                        height={40}
+                      />
+                    </div>
+                    <div className='space-y-1'>
+                      <p className='line-clamp-1 text-lg'>{metadata.title}</p>
+                      <p className='text-sm font-light text-blue-100'>Created about {dateConverter(createdAt)}</p>
+                    </div>
+                  </Link>
+                  {/* TODO - Add delete button */}
+                </li>
+              ))}
+            </ul>
           </div>
         ) : (
           <div className='document-list-empty'>
