@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Input } from './ui/input';
 import Image from 'next/image';
 import { updateDocumentTitle } from '@/lib/actions/room.action';
+import Loader from './loader';
 
 const CollaborativeRoom = ({
     roomId,
@@ -63,7 +64,7 @@ const CollaborativeRoom = ({
 
     return (
         <RoomProvider id={roomId}>
-            <ClientSideSuspense fallback={<div>Loading...</div>}>
+            <ClientSideSuspense fallback={<Loader />}>
                 <div className='collaborative-room'>
                     <Header>
                         <div
