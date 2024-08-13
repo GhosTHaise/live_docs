@@ -22,6 +22,8 @@ jobs:
       - name: Run tests
         run: npm run test
 
+      - name: see variables
+        run: echo "$CLERK_SECRET_KEY $LIVEBLOCKS_SECRET_KEY $NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"
       - name: Run build
         env : 
           CLERK_SECRET_KEY : ${{ secrets.CLERK_SECRET_KEY }}
