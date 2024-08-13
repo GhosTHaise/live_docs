@@ -23,4 +23,8 @@ jobs:
         run: npm run test
 
       - name: Run build
+        env : 
+          CLERK_SECRET_KEY : ${{ secrets.CLERK_SECRET_KEY }}
+          LIVEBLOCKS_SECRET_KEY : ${{ secrets.LIVEBLOCKS_SECRET_KEY }} }}
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY : ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }} }}
         run: npm run build
