@@ -11,6 +11,7 @@ on:
 jobs:
   run-linters-and-tests:
     runs-on: ubuntu-latest
+    environment: dev
     env:
       CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
       LIVEBLOCKS_SECRET_KEY: ${{ secrets.LIVEBLOCKS_SECRET_KEY }}
