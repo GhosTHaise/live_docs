@@ -9,6 +9,10 @@ on:
 jobs:
   run-linters-and-tests:
     runs-on: ubuntu-latest
+    env : 
+        CLERK_SECRET_KEY : ${{ secrets.CLERK_SECRET_KEY }}
+        LIVEBLOCKS_SECRET_KEY : ${{ secrets.LIVEBLOCKS_SECRET_KEY }}
+        NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY : ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -23,15 +27,7 @@ jobs:
         run: npm run test
 
       - name: see variables
-        env :
-          CLERK_SECRET_KEY : ${{ secrets.CLERK_SECRET_KEY }}
-          LIVEBLOCKS_SECRET_KEY : ${{ secrets.LIVEBLOCKS_SECRET_KEY }}
-          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY : ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
-        run: echo "var $CLERK_SECRET_KEY $LIVEBLOCKS_SECRET_KEY $NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"
+        run: echo "var => $secrets.CLERK_SECRET_KEY $CLERK_SECRET_KEY $LIVEBLOCKS_SECRET_KEY $NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY"
       
       - name: Run build
-        env : 
-          CLERK_SECRET_KEY : ${{ secrets.CLERK_SECRET_KEY }}
-          LIVEBLOCKS_SECRET_KEY : ${{ secrets.LIVEBLOCKS_SECRET_KEY }}
-          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY : ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
         run: npm run build
