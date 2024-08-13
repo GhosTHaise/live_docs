@@ -1,11 +1,21 @@
 name: Run linter and tests on push
+
 on: 
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
   run-linters-and-tests:
     runs-on: ubuntu-latest
+    environment: dev
+    env:
+      CLERK_SECRET_KEY: ${{ vars.CLERK_SECRET_KEY }}
+      LIVEBLOCKS_SECRET_KEY: ${{ vars.LIVEBLOCKS_SECRET_KEY }}
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ vars.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
     steps:
       - name: Check out code
         uses: actions/checkout@v4
