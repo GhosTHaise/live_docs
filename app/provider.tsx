@@ -2,7 +2,6 @@
 import React from 'react'
 import {
     LiveblocksProvider,
-    RoomProvider,
     ClientSideSuspense,
 } from "@liveblocks/react/suspense";
 import Loader from '@/components/loader';
@@ -18,11 +17,9 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
                 return users;
             }}
         >
-            <RoomProvider id="my-room">
-                <ClientSideSuspense fallback={<Loader />}>
-                    {children}
-                </ClientSideSuspense>
-            </RoomProvider>
+            <ClientSideSuspense fallback={<Loader />}>
+                {children}
+            </ClientSideSuspense>
         </LiveblocksProvider>
     )
 }
