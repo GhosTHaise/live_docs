@@ -12,6 +12,7 @@ import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import { liveblocksConfig, useEditorStatus } from "@liveblocks/react-lexical"
 import React from 'react';
 import Loader from '../loader';
+import FloatingToolbarPlugin from './plugins/FloatingToolbar';
 
 // Catch any errors that occur during Lexical updates and log them
 // or throw them as needed. If you don't throw them, Lexical will
@@ -59,7 +60,9 @@ export function Editor({ roomId, currentUserType }: { roomId: string, currentUse
                     placeholder={<Placeholder />}
                     ErrorBoundary={LexicalErrorBoundary}
                   />
-
+                  {
+                    currentUserType === "editor" && <FloatingToolbarPlugin />
+                  }
                   <HistoryPlugin />
                   <AutoFocusPlugin />
                 </div>
