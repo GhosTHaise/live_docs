@@ -6,7 +6,7 @@ const ActiveCollaborators = () => {
     const others = useOthers();
     const collaborators = others.map((other) => other.info)
     return (
-        <div className='collaborators-list'>
+        <ul className='collaborators-list'>
             {
                 collaborators.map(({ id, avatar, name, color }) => (
                     <li key={id}>
@@ -22,7 +22,7 @@ const ActiveCollaborators = () => {
                     </li>
                 ))
             }
-        </div>
+        </ul>
     )
 }
 
