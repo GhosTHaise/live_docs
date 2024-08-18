@@ -92,7 +92,12 @@ const SharedModal = ({ roomId,
                         {
                             collaborators.map((collaborator) => (
                                 <Collaborator
-
+                                    key={collaborator.id}
+                                    roomId={roomId}
+                                    creatorId={creatorId}
+                                    email={collaborator.email}
+                                    collaborator={collaborator}
+                                    user={user.info}
                                 />
                             ))
                         }
