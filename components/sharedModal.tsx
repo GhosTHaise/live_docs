@@ -14,6 +14,7 @@ import { Button } from './ui/button';
 import Image from 'next/image';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
+import UseTypeSelector from './useTypeSelector';
 
 const SharedModal = ({ roomId,
     collaborators,
@@ -25,7 +26,7 @@ const SharedModal = ({ roomId,
     const [loading, setLoading] = useState(false);
 
     const [email, setEmail] = useState<string>('')
-    const [userType, setUserType] = useState('viewer')
+    const [userType, setUserType] = useState<UserType>('viewer')
 
     const shareDocumentHandler = async () => {
 
@@ -69,6 +70,10 @@ const SharedModal = ({ roomId,
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className='share-input'
+                        />
+                        <UseTypeSelector
+                            userType={userType}
+                            setUserType={setUserType}
                         />
                     </div>
                 </div>
