@@ -15,6 +15,7 @@ import Image from 'next/image';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
 import UseTypeSelector from './useTypeSelector';
+import Collaborator from './collaborator';
 
 const SharedModal = ({ roomId,
     collaborators,
@@ -76,6 +77,26 @@ const SharedModal = ({ roomId,
                             setUserType={setUserType}
                         />
                     </div>
+                    <Button
+                        type='submit'
+                        onClick={shareDocumentHandler}
+                        className='gradient-blue flex h-full gap-1 px-5'
+                        disabled={loading}
+                    >
+                        {loading ? 'Sending...' : 'Invite'}
+                    </Button>
+                </div>
+
+                <div className='my-2 space-y-2'>
+                    <ul className='flex flex-col'>
+                        {
+                            collaborators.map((collaborator) => (
+                                <Collaborator
+
+                                />
+                            ))
+                        }
+                    </ul>
                 </div>
             </DialogContent>
         </Dialog>
