@@ -46,7 +46,6 @@ export const getDocument = async ({ roomId, userId }: { roomId: string, userId: 
         return parseStringify(room);
     } catch (error) {
         console.log(`Error happened while getting a room : ${error}`);
-
     }
 }
 
@@ -63,7 +62,6 @@ export const updateDocumentTitle = async (roomId: string, title: string) => {
         return parseStringify(updatedRoom)
     } catch (error) {
         console.log(`Error happened while updating a room : ${error}`);
-
     }
 }
 
