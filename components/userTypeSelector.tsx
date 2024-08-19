@@ -7,11 +7,12 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
-const UseTypeSelector = ({
+const UserTypeSelector = ({
     userType,
     setUserType,
     onClickHandler
 }: UserTypeSelectorParams) => {
+
     const accessChangeHandler = (type: UserType) => {
         setUserType(type);
         onClickHandler && onClickHandler(type);
@@ -34,4 +35,4 @@ const UseTypeSelector = ({
     )
 }
 
-export default UseTypeSelector
+export default UserTypeSelector
