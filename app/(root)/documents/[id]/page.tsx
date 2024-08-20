@@ -16,8 +16,6 @@ const page = async ({ params: { id } }: SearchParamProps) => {
 
   if (!room) redirect("/");
 
-  // TODO Assess the permissions of the user to access the document
-
   const userIds = Object.keys(room.usersAccesses);
   const users = await getClerkUser({ userIds });
 
